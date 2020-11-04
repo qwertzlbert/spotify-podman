@@ -9,8 +9,8 @@ buildah run $crt env DEBIAN_FRONTEND=noninteractive apt-get install -y \
 					curl \
 					gnupg \
 					sudo \
-					pulseaudio \
 					pulseaudio-utils \
+					x11-xserver-utils \
 					ca-certificates \
 					--no-install-recommends \
 					&& rm -rf /var/lib/apt/lists/*

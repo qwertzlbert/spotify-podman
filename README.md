@@ -60,7 +60,7 @@ it is not safe!) to access the x11 server.
 
 `pulse-client.conf`: Pulseaudio client configuration to use host audio device as audio source
 
-`run-container.sh`: Example script to run previously build ts3 container as `ts3pod`. Persistent files will be shared on
+`run-container.sh`: Example script to run previously build spotify container as `spotify-container`. Persistent files will be shared on
 `$HOME/.spotify` on host. 
 
  
@@ -83,4 +83,8 @@ For some reason spotify tends to crash with out of memory error:
 [1103/173130.577407:FATAL:memory.cc(40)] Out of memory. size=26214
 ```
 
-I don't know where this is comming from and I'm still searching for the reason
+I don't know where this is comming from and I'm still searching for the reason,
+but it seems to be related to the actual size of the window. Resizing the 
+Spotify client to a smaller window will stop this error. As soon as you 
+maximize it to a certain size this error will show up again and the client will
+crash
