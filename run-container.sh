@@ -9,4 +9,4 @@ podman run -it --rm -e DISPLAY=unix$DISPLAY \
 					-v $HOME/.config/pulse/pulse-cookie:/tmp/pulse-cookie:ro \
 					-v $HOME/.spotify/cache:/home/spotify_user/.cache/spotify:rw,shared \
 					-v $HOME/.spotify/config:/home/spotify_user/.config/spotify:rw,shared \
-					--name spotify-container spotify_pod bash
+					--name spotify-container spotify_pod:latest bash

@@ -1,0 +1,38 @@
+
+stages: 
+  - build
+#  - testing
+  - push
+
+variables:
+  IMAGE_TAG: $REGISTRY/IMAGENAME:$CI_COMMIT_REF_NAME
+  IMAGE_LATEST_TAG: $REGISTRY/IMAGENAME:latest
+
+before_script:
+  - podman login -u $REGISTY_USER -p $REGISTRY_PASSWORD $REGISTRY
+  - buildah login -u $REGISTY_USER -p $REGISTRY_PASSWORD $REGISTRY
+
+build-image:
+  stage: build
+  tags: 
+    - home
+    - podman
+    - registry 
+  script:
+    - ./build-container.sh --name=$IMAGE_LATEST_TAG
+
+push-image: 
+  stage: push
+  tags:
+    - home
+    - podman
+    - registry
+  script:
+    - > 
+      if [ -z "$CI_COMMIT_REF_NAME" ]; then
+        podman tag $IMAGE_LATEST_TAG
+        podman push $IMAGE_LATEST_TAG
+      else
+        podman tag $IMAGE_LATEST_TAG $IMAGE_TAG
+        podman push $IMAGE_LATEST_TAG
+      fi

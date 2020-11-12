@@ -50,8 +50,8 @@ the host root uid is not in the range of the guest container uids an therefore t
 an unknown `nobody` user. 
 
 GUI access is shared by sharing the x11 socket with the container, and afterwards running `xhost local:root` inside the container.
-This allows the `spotify_user` (and also every other user inside the container. So please don't run this command on your host, as 
-it is not safe!) to access the x11 server. 
+This allows the `spotify_user` to access the x11 server.  (and also every other user inside the container. So please don't run this command on your host, as 
+it is not safe!) 
 
 
 # Files
