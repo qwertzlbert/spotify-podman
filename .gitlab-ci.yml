@@ -29,7 +29,6 @@ push-image:
     - registry
   script:
     - > 
-      echo "image_tag=$IMAGE_TAG"
       if [ -z "$CI_COMMIT_REF_NAME" ]; then
         podman tag $IMAGE_LATEST_TAG
         podman push $IMAGE_LATEST_TAG
