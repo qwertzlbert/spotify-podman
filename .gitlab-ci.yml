@@ -29,10 +29,10 @@ push-image:
     - registry
   script:
     - > 
-      if [ -z "$CI_COMMIT_REF_NAME" ]; then
-        podman tag $IMAGE_LATEST_TAG
+      if [ -z "$CI_COMMIT_REF_NAME" ] || [ "$CI_COMMIT_REF_NAME" = "master" ]; then
+        podman tag $REGISTRY/$IMAGENAME $IMAGE_LATEST_TAG
         podman push $IMAGE_LATEST_TAG
       else
-        podman tag $IMAGE_LATEST_TAG $IMAGE_TAG
+        podman tag $REGISTRY/$IMAGENAME $IMAGE_LATEST_TAG $IMAGE_TAG
         podman push $IMAGE_LATEST_TAG $IMAGE_TAG
       fi
